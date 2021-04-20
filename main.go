@@ -17,6 +17,21 @@ func main() {
 	card = "Five of Diamonds"
 	fmt.Println(card)
 
+	// Declare a slice and type it contains. Inside curly braces {} add the
+	// content the slice contains.
+	// append() does not modify existing slice but creates a new slice that
+	// we assign back to variable cards
+	cards := []string{"Ace of Diamonds", newCard()}
+	cards = append(cards, "Six of Spades")
+
+	// Iterate over a closed set or a slice of records
+	// for index, current card we are iterating over.
+	// range is keyword used to iterate over every record in a slice
+	// for loops use := syntax because for every loop the index and card
+	// need to be re-initialized as they are thrown away at the end of loop
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
 }
 
 // The function will return type 'string'
