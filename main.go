@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 
 func main() {
 	// The Go compiler will infer types for you with :=
@@ -11,17 +9,17 @@ func main() {
 	// Defining new variable and manually assigning type
 	// var card string = "Ace of Spades"
 
-	card := newCard()
-	fmt.Println(card)
+	// card := newCard()
+	// fmt.Println(card)
 
-	card = "Five of Diamonds"
-	fmt.Println(card)
+	// card = "Five of Diamonds"
+	// fmt.Println(card)
 
 	// Declare a slice and type it contains. Inside curly braces {} add the
 	// content the slice contains.
 	// append() does not modify existing slice but creates a new slice that
 	// we assign back to variable cards
-	cards := []string{"Ace of Diamonds", newCard()}
+	cards := deck{"Ace of Diamonds", newCard()}
 	cards = append(cards, "Six of Spades")
 
 	// Iterate over a closed set or a slice of records
@@ -29,9 +27,11 @@ func main() {
 	// range is keyword used to iterate over every record in a slice
 	// for loops use := syntax because for every loop the index and card
 	// need to be re-initialized as they are thrown away at the end of loop
-	for i, card := range cards {
-		fmt.Println(i, card)
-	}
+	// for i, card := range cards {
+	// 	fmt.Println(i, card)
+	// }
+	cards.print()
+	
 }
 
 // The function will return type 'string'
