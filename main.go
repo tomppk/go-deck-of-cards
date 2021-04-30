@@ -1,6 +1,5 @@
 package main
 
-
 func main() {
 	// The Go compiler will infer types for you with :=
 	// := only used when variable is declared the first time, the very first time
@@ -19,8 +18,8 @@ func main() {
 	// content the slice contains.
 	// append() does not modify existing slice but creates a new slice that
 	// we assign back to variable cards
-	cards := deck{"Ace of Diamonds", newCard()}
-	cards = append(cards, "Six of Spades")
+	// cards := newDeck()
+	// cards = append(cards, "Six of Spades")
 
 	// Iterate over a closed set or a slice of records
 	// for index, current card we are iterating over.
@@ -30,8 +29,15 @@ func main() {
 	// for i, card := range cards {
 	// 	fmt.Println(i, card)
 	// }
-	cards.print()
-	
+	// cards.print()
+
+	// Deal returns two values of type deck. Assign them to two variables
+	cards := newDeck()
+	hand, remainingCards := deal(cards, 5)
+
+	hand.print()
+	remainingCards.print()
+
 }
 
 // The function will return type 'string'
