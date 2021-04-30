@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
+)
 
 // Create a new type of 'deck' which is a slice of strings
 // The new 'deck' type extends a existing type of []string
@@ -50,4 +55,37 @@ func (d deck) print() {
 // First return value from index 0 to handSize and second from handSize to last i
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// Takes a deck and returns a string representation of it
+func (d deck) toString() string {
+	// Type conversion, turn deck type into []string
+	// From "strings" package join []strings together separated by comma
+	return strings.Join([]string(d), ",")
+}
+
+// Type conversion, turn deck into one long string, and turn that string into
+// slice of bytes so WriteFile can write it to hard drive
+// Last argument default permission 0666 meaning anyone can read/write the file
+// WriteFile() returns an error if something went wrong
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+// Read file and return deck
+// ReadFile() returns []byte and error. If error log it and quit program
+func newDeckFromFile(filename string) deck {
+	bs, err :=	ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	// Type conversion, convert byte slice into a string of cards separated by
+	// commas ie. Ace of Spades,Four of Hearts,...
+	// Split that string at commas to get s slice of strings []string
+	// Convert that s into type deck
+
+	s := strings.Split(string(bs), ",")
+	return deck(s)
 }
