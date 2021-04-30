@@ -77,7 +77,7 @@ func (d deck) saveToFile(filename string) error {
 // Read file and return deck
 // ReadFile() returns []byte and error. If error log it and quit program
 func newDeckFromFile(filename string) deck {
-	bs, err :=	ioutil.ReadFile(filename)
+	bs, err := ioutil.ReadFile(filename)
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
